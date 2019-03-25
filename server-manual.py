@@ -102,10 +102,10 @@ def getUser():
 #예제를 하기 앞서 상단 import을 아래와 같이 추가/수정한다.
 # from flask import Flask, request, session, render_template, redirect, url_for
 
-@app.route('/account/logout', methods=['POST','GET']) 
-def logout(): 
-    session['logFlag'] = False session.pop('userId', None) 
-    return redirect(url_for('main'))
+# @app.route('/account/logout', methods=['POST','GET']) 
+# def logout(): 
+#     session['logFlag'] = False session.pop('userId', None) 
+#     return redirect(url_for('main'))
 
 # redirect()를 활용하면, 사용자의 조회 위치를 변경할 수 있다.
 # url_for()는 route주소로 이동하는 것이 아닌 정의된 함수를 호출한다. 위 예제에서 main을 호출하는 대상은 main()인 함수이다.
@@ -128,12 +128,12 @@ def uncaughtError(error):
 
 #abort 예시
 
-@app.route('/user', methods=['GET']) 
-def getUser(): 
-    if 'userId' in session: 
-        return '[GET][USER] USER ID : {0}'.format(session['userId']) 
-    else: 
-        abort(400)
+# @app.route('/user', methods=['GET']) 
+# def getUser(): 
+#     if 'userId' in session: 
+#         return '[GET][USER] USER ID : {0}'.format(session['userId']) 
+#     else: 
+#         abort(400)
 
 #session안에 userId 항목이 없다면, abort를 통해 400에러가 출력되게 한다.
 
