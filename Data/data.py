@@ -28,4 +28,6 @@ rider_data = [
 
 #레벨이 아닌 경험치량이 필요
 
-#dm02180218
+#centos
+#port : 13306
+#https://www.developer-leby.kim/97
