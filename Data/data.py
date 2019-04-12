@@ -32,3 +32,5 @@ rider_data = [
 #port : 13306
 #https://www.developer-leby.kim/97
 #https://luji.tistory.com/7
+#https://luckyyowu.tistory.com/287
+#위에꺼는 phpmyadmin설정
