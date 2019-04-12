@@ -31,3 +31,4 @@ rider_data = [
 #centos
 #port : 13306
 #https://www.developer-leby.kim/97
+#https://luji.tistory.com/7
