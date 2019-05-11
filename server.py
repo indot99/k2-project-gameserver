@@ -113,14 +113,16 @@ def user_selects_wand():
 @app.rounte('/user/inventory/consume', methods=['POST'])
 def get_user_consume():
     return 1
+@app.rounte('/user/selects/consume', methods=['POST'])
+def user_selects_consume():
+    return 1
 ##기타를 탭 눌렀을 때: 나머지 아이템들이 보여짐 (어떤 아이템인지 모르지만 스킨 탈것 펫 하수인이라면 클릭된 것들은 디비에 selected로 저장.)
 @app.rounte('/user/inventory/etc', methods=['POST'])
 def get_user_etc():
     return 1
+@app.rounte('/user/selects/etc', methods=['POST'])
 def user_selects_etc():
     return 1
-
-
 
 
 #######소환술버튼을 눌렀을 때
