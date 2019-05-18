@@ -45,5 +45,12 @@ def CheckRegister(_id,_pw,_name):
         conn.close()
     return data
 
-    
+def GetDictionaryInfo(tablename):
+    conn = getConnection()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM `%s`" %(tablename)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
     

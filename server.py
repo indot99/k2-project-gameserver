@@ -14,41 +14,177 @@ app = Flask(__name__)
 
 ######도감버튼을 눌렀을 때
 #캐릭터 도감:DB에 있는 캐릭터도감정보들..?
-@app.route('/dictionary/characters', methods=['POST'])
+@app.route('/dictionary/characters', methods=['GET'])
 def dictionary_characters():
-    return 1
+    data = database.GetDictionaryInfo('CharacterInfo')
+    res = list()
+    for i in range(len(data)):
+        res.append({
+            "character_key" : data[i][0],
+            "name" : data[i][1],
+            "description": data[i][2],
+            "term" : data[i][3]
+        })
+    return json.dumps(res,ensure_ascii=False)
 #정령 도감:DB에 있는 정령도감정보들
-@app.route('/dictionary/sprites', methods=['POST'])
+@app.route('/dictionary/sprites', methods=['GET'])
 def dictionary_sprites():
+    data = database.GetDictionaryInfo('SpriteInfo')
     return 1
 #지팡이 도감:DB에 있는 지팡이도감정보들
-@app.route('/dictionary/wands', methods=['POST'])
+@app.route('/dictionary/wands', methods=['GET'])
 def dictionary_wands():
+    data = database.GetDictionaryInfo('WandInfo')
     return 1
 #지역 도감:DB에 있는 지역도감정보들
-@app.route('/dictionary/region', methods=['POST'])
+@app.route('/dictionary/region', methods=['GET'])
 def dictionary_region():
     return 1
 #몬스터 도감:DB에 있는 몬스터도감정보들
-@app.route('/dictionary/monsters', methods=['POST'])
+@app.route('/dictionary/monsters', methods=['GET'])
 def dictionary_monsters():
+    data = database.GetDictionaryInfo('SpriteInfo')
     return 1
 #아이템 도감:DB에 있는 아이템도감정보들
-@app.route('/dictionary/items', methods=['POST'])
+@app.route('/dictionary/items', methods=['GET'])
 def dictionary_items():
+    data = database.GetDictionaryInfo('ItemInfo')
     return 1
 #연대기 버튼:
  
 #메인 퀘스트: 메인퀘스트도감 TBL에서,가문 TBL에서 메인퀘스트
 @app.route('/quest/main/mine', methods=['POST'])
 def main_quest():
+    data = database.GetDictionaryInfo('StoryInfo')
     return 1
 #서브 퀘스트: 서브퀘스트도감 TBL에서,가문 TBL에서 서브퀘스트
 @app.route('/quest/sub/mine', methods=['POST'])
 def sub_quest():
     return 1
 
+########캐릭터 버튼 클릭했을 때##########
 
+@app.route('character/character/main',methods=['POST'])
+def character_character_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/skin/main',methods=['POST'])
+def character_skin_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/pet/main',methods=['POST'])
+def character_pet_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/ride/main',methods=['POST'])
+def character_ride_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/servant/main',methods=['POST'])
+def character_servant_main():
+    data = request.get_json()
+    return 1
+
+##끌어다놓을때
+
+@app.route('character/character/select',methods=['POST'])
+def character_character_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/skin/select',methods=['POST'])
+def character_skin_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/pet/select',methods=['POST'])
+def character_pet_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/ride/select',methods=['POST'])
+def character_ride_main():
+    data = request.get_json()
+    return 1
+
+@app.route('character/servant/select',methods=['POST'])
+def character_servant_main():
+    data = request.get_json()
+    return 1
+
+#################################
+
+######상점버튼을 눌렀을때#########
+@app.route('store/main',methods=['POST'])
+def store_main():
+    data = request.get_json()
+    return 1
+
+@app.route('store/main/left/consume',methods=['POST'])
+def store_main_left_consume():
+    data = request.get_json()
+    return 1
+
+@app.route('store/main/left/gold',methods=['POST'])
+def store_main_left_gold():
+    data = request.get_json()
+    return 1
+
+@app.route('store/main/left/baron',methods=['POST'])
+def store_main_left_baron():
+    data = request.get_json()
+    return 1
+
+@app.route('store/main/right/wand',methods=['POST'])
+def store_main_right_wand():
+    data = request.get_json()
+    return 1
+
+@app.route('store/main/right/consume',methods=['POST'])
+def store_main_right_consume():
+    data = request.get_json()
+    return 1
+
+@app.route('store/main/right/etc',methods=['POST'])
+def store_main_right_etc():
+    data = request.get_json()
+    return 1
+
+#########판매#########
+
+@app.route('store/sell/left/consume',methods=['POST'])
+def store_sell_left_consume():
+    data = request.get_json()
+    return 1
+
+@app.route('store/sell/left/gold',methods=['POST'])
+def store_sell_left_gold():
+    data = request.get_json()
+    return 1
+
+@app.route('store/sell/left/baron',methods=['POST'])
+def store_sell_left_baron():
+    data = request.get_json()
+    return 1
+
+@app.route('store/sell/right/wand',methods=['POST'])
+def store_sell_right_wand():
+    data = request.get_json()
+    return 1
+
+@app.route('store/sell/right/consume',methods=['POST'])
+def store_sell_right_consume():
+    data = request.get_json()
+    return 1
+
+@app.route('store/sell/right/etc',methods=['POST'])
+def store_sell_right_etc():
+    data = request.get_json()
+    return 1
 
 
 ######모험버튼을 눌렀을 때(모험지도)
@@ -56,43 +192,6 @@ def sub_quest():
 @app.route('user/myadventure/map', methods=['POST'])
 def get_myadventure():
     return 1
-
-
-
-########상점버튼을 눌렀을 때
-####오늘쪽 UI에선 내꺼를 팔 수 있음####
-##User TBL에서 가지고 있는 무기, 소비품, 기타 목록들의 정보들이 보내짐
-#맨 오른쪽 UI에 무기별로, 소비품별로, 기타물품별로 띄워지는건 클라이언트에서 
-@app.route('/store/myitems', methods=['POST'])
-def get_user_items():
-    return 1
-##오른쪽 UI에서 아이템을 누르면 판매 탭이 보이고 판매를 누르면 DB아이템 목록에서 제거되고 
-##그 값만큼 User TBL에 GOLD 추가
-@app.route('/store/sellitems', methods=['POST'])
-def sell_user_items():
-    return 1
-####왼쪽 UI에는 상점 아이템####
-##왼쪽 UI에서 특수화폐상점 탭을 누르면: CachItemInfo 테이블에서 정보가 보내짐 
-@app.route('/store/cashitems', methods=['POST'])
-def get_cash_items():
-    return 1
-##아이템을 누르면 구매 탭이 나오고 그걸 누르면 DB내 아이템에 [아이템이름][유저ID]로 구매정보 추가, 
-##아이템 가격만큼 DB 바론(Cash)에서 감소
-@app.route('/store/cashitems/buy', methods=['POST'])
-def buy_cash_items():
-    return 1
-##왼쪽 UI에서 소비품상점 탭을 누르면: NOT YET..
-
-##왼쪽 UI에서 골드상점 탭을 누르면: StoreItemInfo 테이블에서 정보가 보내짐
-@app.route('/store/golditems', methods=['POST'])
-def get_gold_items():
-    return 1
-##아이템을 누르면 구매 탭이 나오고 그걸 누르면 DB내 아이템에 [아이템이름][유저ID]로 구매정보 추가, 
-##아이템 가격만큼 DB GOLD에서 감소
-@app.route('/store/golditems/buy', methods=['POST'])
-def but_gold_items():
-    return 1
-
 
 
 
@@ -105,37 +204,37 @@ def get_user_family_selected():
 @app.route('/user/inventory/wand', methods=['POST'])
 def get_user_wands():
     return 1
-##    클릭된 지팡이가 디비에 selected 지팡이로 저장되어야 함.
-@app.route('/user/selects/wand', methods=['POST'])
-def user_selects_wand():
-    return 1
 ##소비품을 탭 눌렀을 때: 레시피에 쓰이는 재료들이 보여짐
 @app.rounte('/user/inventory/consume', methods=['POST'])
 def get_user_consume():
-    return 1
-@app.rounte('/user/selects/consume', methods=['POST'])
-def user_selects_consume():
     return 1
 ##기타를 탭 눌렀을 때: 나머지 아이템들이 보여짐 (어떤 아이템인지 모르지만 스킨 탈것 펫 하수인이라면 클릭된 것들은 디비에 selected로 저장.)
 @app.rounte('/user/inventory/etc', methods=['POST'])
 def get_user_etc():
     return 1
-@app.rounte('/user/selects/etc', methods=['POST'])
-def user_selects_etc():
+##    클릭된 지팡이가 디비에 selected 지팡이로 저장되어야 함.
+@app.route('/user/selects/wand', methods=['POST'])
+def user_selects_wand():
     return 1
 
 
 #######소환술버튼을 눌렀을 때
 ##디비에 User가 가지고 있는 정령들 정보를 클라이언트로 보냄
-@app.route('/user/prites/info', methods=['POST'])
+@app.route('/user/sprites/info', methods=['POST'])
 def get_user_sprites():
     return 1
 #(가나다순을 누르면)가지고 있는 정령들이 가나다로 정렬
 #(속성별을 누르면)가지고 있는 정령들이 속성별로 정렬
 #(등급별을 누르면)가지고 있는 정령들이 등급별로 정렬
 ##(왼쪽UI)최대 3개 선택된 정령들이 User(가문테이블)에 selected 정령들에 저장되어야함.
-@app.rounte('/user/selects/sprites', methods=['POST'])
-def user_selects_sprites():
+@app.rounte('/user/selects/sprites1', methods=['POST'])
+def user_selects_sprites1():
+    return 1
+    @app.rounte('/user/selects/sprites2', methods=['POST'])
+def user_selects_sprites2():
+    return 1
+    @app.rounte('/user/selects/sprites3', methods=['POST'])
+def user_selects_sprites3():
     return 1
 #(왼쪽UI)선택된 정령들의 보유 스킬들이 보여짐
 
@@ -144,8 +243,6 @@ def user_selects_sprites():
 ########캐릭터리스트를 눌렀을 때_일단 PASS....
 ##user가 가지고 있는 캐릭터들 다 불러옴.
 ##클릭한 캐릭터는 가문테이블에 업데이트
-
-
 
 
 #######################################################
