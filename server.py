@@ -231,10 +231,10 @@ def get_user_sprites():
 @app.rounte('/user/selects/sprites1', methods=['POST'])
 def user_selects_sprites1():
     return 1
-    @app.rounte('/user/selects/sprites2', methods=['POST'])
+@app.rounte('/user/selects/sprites2', methods=['POST'])
 def user_selects_sprites2():
     return 1
-    @app.rounte('/user/selects/sprites3', methods=['POST'])
+@app.rounte('/user/selects/sprites3', methods=['POST'])
 def user_selects_sprites3():
     return 1
 #(왼쪽UI)선택된 정령들의 보유 스킬들이 보여짐
