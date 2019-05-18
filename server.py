@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from flask import Flask, request, jsonify, render_template
 from dao import database
 import pymysql
