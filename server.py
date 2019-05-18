@@ -65,124 +65,124 @@ def sub_quest():
 
 ########캐릭터 버튼 클릭했을 때##########
 
-@app.route('character/character/main',methods=['POST'])
+@app.route('/character/character/main',methods=['POST'])
 def character_character_main():
     data = request.get_json()
     return 1
 
-@app.route('character/skin/main',methods=['POST'])
+@app.route('/character/skin/main',methods=['POST'])
 def character_skin_main():
     data = request.get_json()
     return 1
 
-@app.route('character/pet/main',methods=['POST'])
+@app.route('/character/pet/main',methods=['POST'])
 def character_pet_main():
     data = request.get_json()
     return 1
 
-@app.route('character/ride/main',methods=['POST'])
+@app.route('/character/ride/main',methods=['POST'])
 def character_ride_main():
     data = request.get_json()
     return 1
 
-@app.route('character/servant/main',methods=['POST'])
+@app.route('/character/servant/main',methods=['POST'])
 def character_servant_main():
     data = request.get_json()
     return 1
 
 ##끌어다놓을때
 
-@app.route('character/character/select',methods=['POST'])
-def character_character_main():
+@app.route('/character/character/select',methods=['POST'])
+def character_character_select():
     data = request.get_json()
     return 1
 
-@app.route('character/skin/select',methods=['POST'])
-def character_skin_main():
+@app.route('/character/skin/select',methods=['POST'])
+def character_skin_select():
     data = request.get_json()
     return 1
 
-@app.route('character/pet/select',methods=['POST'])
-def character_pet_main():
+@app.route('/character/pet/select',methods=['POST'])
+def character_pet_select():
     data = request.get_json()
     return 1
 
-@app.route('character/ride/select',methods=['POST'])
-def character_ride_main():
+@app.route('/character/ride/select',methods=['POST'])
+def character_ride_select():
     data = request.get_json()
     return 1
 
-@app.route('character/servant/select',methods=['POST'])
-def character_servant_main():
+@app.route('/character/servant/select',methods=['POST'])
+def character_servant_select():
     data = request.get_json()
     return 1
 
 #################################
 
 ######상점버튼을 눌렀을때#########
-@app.route('store/main',methods=['POST'])
+@app.route('/store/main',methods=['POST'])
 def store_main():
     data = request.get_json()
     return 1
 
-@app.route('store/main/left/consume',methods=['POST'])
+@app.route('/store/main/left/consume',methods=['POST'])
 def store_main_left_consume():
     data = request.get_json()
     return 1
 
-@app.route('store/main/left/gold',methods=['POST'])
+@app.route('/store/main/left/gold',methods=['POST'])
 def store_main_left_gold():
     data = request.get_json()
     return 1
 
-@app.route('store/main/left/baron',methods=['POST'])
+@app.route('/store/main/left/baron',methods=['POST'])
 def store_main_left_baron():
     data = request.get_json()
     return 1
 
-@app.route('store/main/right/wand',methods=['POST'])
+@app.route('/store/main/right/wand',methods=['POST'])
 def store_main_right_wand():
     data = request.get_json()
     return 1
 
-@app.route('store/main/right/consume',methods=['POST'])
+@app.route('/store/main/right/consume',methods=['POST'])
 def store_main_right_consume():
     data = request.get_json()
     return 1
 
-@app.route('store/main/right/etc',methods=['POST'])
+@app.route('/store/main/right/etc',methods=['POST'])
 def store_main_right_etc():
     data = request.get_json()
     return 1
 
 #########판매#########
 
-@app.route('store/sell/left/consume',methods=['POST'])
+@app.route('/store/sell/left/consume',methods=['POST'])
 def store_sell_left_consume():
     data = request.get_json()
     return 1
 
-@app.route('store/sell/left/gold',methods=['POST'])
+@app.route('/store/sell/left/gold',methods=['POST'])
 def store_sell_left_gold():
     data = request.get_json()
     return 1
 
-@app.route('store/sell/left/baron',methods=['POST'])
+@app.route('/store/sell/left/baron',methods=['POST'])
 def store_sell_left_baron():
     data = request.get_json()
     return 1
 
-@app.route('store/sell/right/wand',methods=['POST'])
+@app.route('/store/sell/right/wand',methods=['POST'])
 def store_sell_right_wand():
     data = request.get_json()
     return 1
 
-@app.route('store/sell/right/consume',methods=['POST'])
+@app.route('/store/sell/right/consume',methods=['POST'])
 def store_sell_right_consume():
     data = request.get_json()
     return 1
 
-@app.route('store/sell/right/etc',methods=['POST'])
+@app.route('/store/sell/right/etc',methods=['POST'])
 def store_sell_right_etc():
     data = request.get_json()
     return 1
@@ -190,7 +190,7 @@ def store_sell_right_etc():
 
 ######모험버튼을 눌렀을 때(모험지도)
 ##chapter ID 정보 보내줌#
-@app.route('user/myadventure/map', methods=['POST'])
+@app.route('/user/myadventure/map', methods=['POST'])
 def get_myadventure():
     return 1
 
@@ -206,11 +206,11 @@ def get_user_family_selected():
 def get_user_wands():
     return 1
 ##소비품을 탭 눌렀을 때: 레시피에 쓰이는 재료들이 보여짐
-@app.rounte('/user/inventory/consume', methods=['POST'])
+@app.route('/user/inventory/consume', methods=['POST'])
 def get_user_consume():
     return 1
 ##기타를 탭 눌렀을 때: 나머지 아이템들이 보여짐 (어떤 아이템인지 모르지만 스킨 탈것 펫 하수인이라면 클릭된 것들은 디비에 selected로 저장.)
-@app.rounte('/user/inventory/etc', methods=['POST'])
+@app.route('/user/inventory/etc', methods=['POST'])
 def get_user_etc():
     return 1
 ##    클릭된 지팡이가 디비에 selected 지팡이로 저장되어야 함.
@@ -228,13 +228,13 @@ def get_user_sprites():
 #(속성별을 누르면)가지고 있는 정령들이 속성별로 정렬
 #(등급별을 누르면)가지고 있는 정령들이 등급별로 정렬
 ##(왼쪽UI)최대 3개 선택된 정령들이 User(가문테이블)에 selected 정령들에 저장되어야함.
-@app.rounte('/user/selects/sprites1', methods=['POST'])
+@app.route('/user/selects/sprites1', methods=['POST'])
 def user_selects_sprites1():
     return 1
-@app.rounte('/user/selects/sprites2', methods=['POST'])
+@app.route('/user/selects/sprites2', methods=['POST'])
 def user_selects_sprites2():
     return 1
-@app.rounte('/user/selects/sprites3', methods=['POST'])
+@app.route('/user/selects/sprites3', methods=['POST'])
 def user_selects_sprites3():
     return 1
 #(왼쪽UI)선택된 정령들의 보유 스킬들이 보여짐
@@ -249,4 +249,4 @@ def user_selects_sprites3():
 #######################################################
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host = '0.0.0.0')

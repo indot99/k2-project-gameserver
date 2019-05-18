@@ -39,8 +39,7 @@ def CheckRegister(_id,_pw,_name):
         data["name"] = False
 
     if data["id"] == True and data["pw"] == True and data["name"] == True:
-        sql = "INSERT INTO `TBLuser` (`id`,`pw`,`nickname`) VALUES('%s','%s','%s')"
-        %(_id,_pw,_name)
+        sql = "INSERT INTO `TBLuser` (`id`,`pw`,`nickname`) VALUES('%s','%s','%s')" %(_id,_pw,_name)
         cursor.execute(sql)
         conn.commit()
         conn.close()
