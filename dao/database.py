@@ -45,6 +45,7 @@ def CheckRegister(_id,_pw,_name):
         conn.close()
     return data
 
+##이부분##
 def GetDictionaryInfo(tablename):
     conn = getConnection()
     cursor = conn.cursor()

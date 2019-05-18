@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 from flask import Flask, request, jsonify, render_template
-from dao import database
+from Dao import database
 import pymysql
 import json
 
@@ -18,7 +18,9 @@ app = Flask(__name__)
 @app.route('/dictionary/characters', methods=['GET'])
 def dictionary_characters():
     data = database.GetDictionaryInfo('CharacterInfo')
+    #반환할변수명은 res, list()형태로 생성자 선언
     res = list()
+    #for문돌림
     for i in range(len(data)):
         res.append({
             "character_key" : data[i][0],
@@ -44,7 +46,6 @@ def dictionary_region():
 #몬스터 도감:DB에 있는 몬스터도감정보들
 @app.route('/dictionary/monsters', methods=['GET'])
 def dictionary_monsters():
-    data = database.GetDictionaryInfo('SpriteInfo')
     return 1
 #아이템 도감:DB에 있는 아이템도감정보들
 @app.route('/dictionary/items', methods=['GET'])
