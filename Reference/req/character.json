@@ -16,7 +16,9 @@
         },
         "skin_Drag": {
             "user_key": 0,
-            "character_select_key": 0
+            "character_select_key": 0,
+            "skin_key":0,
+            "skin_name":""
         }
     },
     {
