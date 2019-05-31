@@ -1,6 +1,6 @@
 #-*- coding:utf-8 -*-
 from flask import Flask, request, jsonify, render_template
-from Dao import database
+from dao import database
 import pymysql
 import json
 
@@ -33,12 +33,35 @@ def dictionary_characters():
 @app.route('/dictionary/sprites', methods=['GET'])
 def dictionary_sprites():
     data = database.GetDictionaryInfo('SpriteInfo')
-    return 1
+    res = list()
+    for i in range(len(data)):
+        res.append({
+            "_id" : data[i][0],
+            "name" : data[i][1],
+            "description" : data[i][2],
+            "tern" : data[i][3],
+            "skill1" : data[i][4],
+            "skill2" : data[i][5],
+            "skill3" : data[i][6],
+            "skill1description" : data[i][7],
+            "skill2description" : data[i][8],
+            "skill3description" : data[i][9]
+        })
+    return json.dumps(res,ensure_ascii=False)
 #지팡이 도감:DB에 있는 지팡이도감정보들
 @app.route('/dictionary/wands', methods=['GET'])
 def dictionary_wands():
     data = database.GetDictionaryInfo('WandInfo')
-    return 1
+    res = list()
+    for i in range(len(data)):
+        res.append({
+            "_id" : data[i][0],
+            "name" : data[i][1],
+            "description" : data[i][2],
+            "recipe" : data[i][3],
+            "status" : data[i][4]
+        })
+    return json.dumps(res, ensure_ascii=False)
 #지역 도감:DB에 있는 지역도감정보들
 @app.route('/dictionary/region', methods=['GET'])
 def dictionary_region():
@@ -51,14 +74,31 @@ def dictionary_monsters():
 @app.route('/dictionary/items', methods=['GET'])
 def dictionary_items():
     data = database.GetDictionaryInfo('ItemInfo')
-    return 1
+    res = list()
+    for i in range(len(data)):
+        res.append({
+            "_id" : data[i][0],
+            "name" : data[i][1],
+            "description" : data[i][2],
+            "category" : data[i][3],
+            "category_key" : data[i][4]
+        })
+    return json.dumps(res, ensure_ascii=False)
 #연대기 버튼:
  
 #메인 퀘스트: 메인퀘스트도감 TBL에서,가문 TBL에서 메인퀘스트
 @app.route('/quest/main/mine', methods=['POST'])
 def main_quest():
     data = database.GetDictionaryInfo('StoryInfo')
-    return 1
+    res = list()
+    for i in range(len(data)):
+        res.append({
+            "story_key" : data[i][0],
+            "title" : data[i][1],
+            "description" : data[i][2],
+            "dungeon" : data[i][3]
+        })
+    return json.dumps(res, ensure_ascii=False)
 #서브 퀘스트: 서브퀘스트도감 TBL에서,가문 TBL에서 서브퀘스트
 @app.route('/quest/sub/mine', methods=['POST'])
 def sub_quest():
@@ -69,11 +109,28 @@ def sub_quest():
 @app.route('/character/character/main',methods=['POST'])
 def character_character_main():
     data = request.get_json()
-    return 1
+    DBdata = database.GetInputKeyTBLInfo('TBLcharacter','user_key',data["user_key"])
+    res = list()
+    for i in range(len(DBdata)):
+        res,append({
+            "character_key":DBdata[i][1],
+                "name":DBdata[i][2],
+                "nickname":DBdata[i][3],
+                "modeling":DBdata[i][4],
+                "skin":DBdata[i][5],
+                "skin_key": DBdata[i][6],
+                "exp": DBdata[i][7],
+                "rank":DBdata[i][8]
+        })
+    return json.dumps(res,ensure_ascii=False)
 
 @app.route('/character/skin/main',methods=['POST'])
 def character_skin_main():
     data = request.get_json()
+
+    user_key = data["user_key"]
+    character_select_key = data["character_select_key"]
+
     return 1
 
 @app.route('/character/pet/main',methods=['POST'])

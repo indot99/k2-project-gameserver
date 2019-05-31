@@ -4,7 +4,10 @@
             {
                 "character_key":0,
                 "name":"",
+                "nickname":"",
+                "modeling":"",
                 "skin":"",
+                "skin_key":"",
                 "exp": 0,
                 "rank":""
             },
@@ -28,32 +31,75 @@
         }
     },
     {
-        "skin_Tab":{
-            "skin_key":0,
-            "name": "blahblah",
-            "description":"내용",
-            "term":"내용"
-        },
+        "skin_Tab":[
+                {
+                    "skin_key":0,
+                    "name": "blahblah",
+                    "description":"내용",
+                    "term":"내용"
+                },
+                {
+                    "skin_key":0,
+                    "name": "blahblah",
+                    "description":"내용",
+                    "term":"내용"  
+                }
+            
+        ],
         "skin_Drag": {
             "#content":"db에 캐릭터 skin_key,skin이 바뀜"
         }
     },
     {
-        "pet_Tab": {
-            "user_key": 0
-        },
+        "pet_Tab": [
+            {
+                "pet_key":0,
+                "name":"",
+                "species":"",
+                "rank":"",
+                "hp":0,
+                "skill1":"",
+                "skill2":""
+            },
+            {
+                "pet_key":0,
+                "name":"",
+                "species":"",
+                "rank":"",
+                "hp":0,
+                "skill1":"",
+                "skill2":""
+            }
+        ],
         "pet_Drag": {
-            "user_key": 0,
-            "pet_key": 0
+            "#content":"db에 user_info에 pet_key가 바뀜"
         }
     },
     {
-        "servant_Tab": {
-            "user_key": 0
-        },
+        "servant_Tab": [
+            {
+                "servant_key":0,
+                "name":"",
+                "species":"",
+                "rank":"",
+                "story":"",
+                "hp":100,
+                "skill1":"",
+                "skill2":""
+            },
+            {
+                "servant_key":0,
+                "name":"",
+                "species":"",
+                "rank":"",
+                "story":"",
+                "hp":100,
+                "skill1":"",
+                "skill2":""
+            }
+        ],
         "servant_Drag":{
-            "user_key": 0,
-            "servant_key": 0
+            "#content":"db에 user_info에 servant_key가 바뀜"
         }
     }
 ]

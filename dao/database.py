@@ -54,4 +54,11 @@ def GetDictionaryInfo(tablename):
     result = cursor.fetchall()
     return result
 
-    
+#불확실
+def GetInputKeyTBLInfo(tablename,key_name,key):
+    conn = getConnection()
+    cursor = conn.cursor()
+    sql = "SELECT * FROM `%s` WHERE `%s` = %d" %(tablename,key_name,key)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
