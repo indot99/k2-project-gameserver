@@ -62,3 +62,22 @@ def GetInputKeyTBLInfo(tablename,key_name,key):
     cursor.execute(sql)
     result = cursor.fetchall()
     return result
+
+#불확실
+def UpdateTBL(tablename,update_key_name,update_key,user_key):
+    conn = getConnection()
+    cursor = conn.cursor()
+    sql = "UPDATE `%s` SET `%s` = %d WHERE `user_key` = %d" %(tablename,update_key_name,update_key,user_key)
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+    return 'success'
+
+def UpdateSkinTBL(skin_key,skin_name,character_key):
+    conn = getConnection()
+    cursor = conn.cursor()
+    sql = "UPDATE `TBLcharacter` SET `skin_key` = %d, `skin` = '%s' WHERE `character_key` = %d" %(skin_key,skin_name,character_key)
+    cursor.execute(sql)
+    conn.commit()
+    conn.close()
+    return 'success'

@@ -112,7 +112,7 @@ def character_character_main():
     DBdata = database.GetInputKeyTBLInfo('TBLcharacter','user_key',data["user_key"])
     res = list()
     for i in range(len(DBdata)):
-        res,append({
+        res.append({
             "character_key":DBdata[i][1],
                 "name":DBdata[i][2],
                 "nickname":DBdata[i][3],
@@ -131,12 +131,36 @@ def character_skin_main():
     user_key = data["user_key"]
     character_select_key = data["character_select_key"]
 
-    return 1
+    DBdata = database.GetInputKeyTBLInfo('SkinInfo','character_key',character_select_key)
+    res = list()
+    for i in range(len(DBdata)):
+        res.append({
+            "skin_key" : DBdata[i][1],
+            "name" : DBdata[i][2],
+            "description" : DBdata[i][3],
+            "term" : DBdata[i][4]
+        })
+    return json.dumps(res,ensure_ascii=False)
 
 @app.route('/character/pet/main',methods=['POST'])
 def character_pet_main():
     data = request.get_json()
-    return 1
+
+    user_key = data["user_key"]
+
+    DBdata = database.GetInputKeyTBLInfo('TBLpet','user_key',user_key)
+    res = list()
+    for i in range(len(DBdata)):
+        res.append({
+            "pet_key" : DBdata[i][1],
+            "name" : DBdata[i][2],
+            "species" : DBdata[i][3],
+            "rank" : DBdata[i][4],
+            "hp" : DBdata[i][5],
+            "skill1" : DBdata[i][6],
+            "skill2" : DBdata[i][7]
+        })
+    return json.dumps(res,ensure_ascii=False)
 
 @app.route('/character/ride/main',methods=['POST'])
 def character_ride_main():
@@ -146,24 +170,69 @@ def character_ride_main():
 @app.route('/character/servant/main',methods=['POST'])
 def character_servant_main():
     data = request.get_json()
-    return 1
+
+    user_key = data["user_key"]
+
+    DBdata = database.GetInputKeyTBLInfo('TBLservant','user_key',user_key)
+    res = list()
+    for i in range(len(DBdata)):
+        res.append({
+            "servant_key" : DBdata[i][1],
+            "name" : DBdata[i][2],
+            "species" : DBdata[i][3],
+            "rank" : DBdata[i][4],
+            "story" : DBdata[i][5],
+            "hp" : DBdata[i][6],
+            "skill1" : DBdata[i][7],
+            "skill2" : DBdata[i][8]
+        })
+
+    return json.dumps(res,ensure_ascii=False)
 
 ##끌어다놓을때
 
 @app.route('/character/character/select',methods=['POST'])
 def character_character_select():
     data = request.get_json()
-    return 1
+
+    user_key = data["user_key"]
+    character_select_key = data["character_select_key"]
+
+    result = database.UpdateTBL('TBLuser','character_select_key',character_select_key,user_key)
+
+    res = dict()
+    res["result"] = result
+
+    return json.dumps(res,ensure_ascii=False)
 
 @app.route('/character/skin/select',methods=['POST'])
 def character_skin_select():
     data = request.get_json()
-    return 1
+
+    character_key = data["character_key"]
+    skin_key = data["skin_key"]
+    skin_name = data["skin_name"]
+
+    result = database.UpdateSkinTBL(skin_key,skin_name,character_key)
+    
+    res = dict()
+    res["result"] = result
+
+    return json.dumps(res,ensure_ascii=False)
 
 @app.route('/character/pet/select',methods=['POST'])
 def character_pet_select():
     data = request.get_json()
-    return 1
+
+    user_key = data["user_key"]
+    pet_key = data["pet_key"]
+
+    result = database.UpdateTBL('TBLuser','pet_key',pet_key,user_key)
+
+    res = dict()
+    res["result"] = result
+
+    return json.dumps(res,ensure_ascii=False)
 
 @app.route('/character/ride/select',methods=['POST'])
 def character_ride_select():
@@ -173,7 +242,16 @@ def character_ride_select():
 @app.route('/character/servant/select',methods=['POST'])
 def character_servant_select():
     data = request.get_json()
-    return 1
+
+    user_key = data["user_key"]
+    servant_key = data["servant_key"]
+
+    result = database.UpdateTBL('TBLuser','servant_key',servant_key,user_key)
+
+    res = dict()
+    res["result"] = result
+
+    return json.dumps(res,ensure_ascii=False)
 
 #################################
 
@@ -258,23 +336,93 @@ def get_myadventure():
 ##인벤_선택창: User의 Selected 캐릭터, 지팡이, 스킨, 탈것, 펫, 하수인 정보 가져옴.
 @app.route('/user/family/selected/info', methods=['POST'])
 def get_user_family_selected():
-    return 1
+    data = request.get_json()
+    DBdata = database.GetInputKeyTBLInfo('TBLuser','user_key', data["user_key"])
+    res = list()
+    for i in range(len(DBdata)):
+        res,append({
+            "id":DBdata[i][1],
+            "pw":DBdata[i][2],
+            "nickname":DBdata[i][3],
+            "rank":DBdata[i][4],
+            "story_key":DBdata[i][5],
+            "character_selected_key":DBdata[i][6],
+            "servant_key":DBdata[i][7],
+            "pet_key":DBdata[i][8],
+            "wand_key":DBdata[i][9],
+            "sprite_key1":DBdata[i][10],
+            "sprite_key2":DBdata[i][11],
+            "sprite_key3":DBdata[i][12],
+            "gold":DBdata[i][13],
+            "baron":DBdata[i][14]
+        })
+    return json.dumps(res,ensure_ascii=False)
+
 ##지팡이 탭 눌렀을 때: 가문의 가지고 있는 지팡이들 보여줌
 @app.route('/user/inventory/wand', methods=['POST'])
 def get_user_wands():
-    return 1
+    data = request.get_json()
+    DBdata = database.GetInputKeyTBLInfo('TBLwand', 'user_key', data["user_key"])
+    res = list()
+    for i in range(len(DBdata)):
+        res,append({
+            "wand_key":DBdata[i][1],
+            "name":DBdata[i][2],
+            "atk":DBdata[i][3],
+            "accurate":DBdata[i][4],
+            "speed":DBdata[i][5],
+            "resistance":DBdata[i][6],
+            "cooltime":DBdata[i][7],
+            "reinforce":DBdata[i][8],
+            "price":DBdata[i][9]
+        })
+    return json.dumps(res,ensure_ascii=False)
+
 ##소비품을 탭 눌렀을 때: 레시피에 쓰이는 재료들이 보여짐
 @app.route('/user/inventory/consume', methods=['POST'])
 def get_user_consume():
-    return 1
+    data = request.get_json()
+    DBdata = database.GetInputKeyTBLInfo('TBLconsume', 'user_key', data["user_key"])
+    res = list()
+    for i in range(len(DBdata)):
+        res.append({
+            "consume_key":DBdata[i][1],
+            "item_key":DBdata[i][2],
+            "name":DBdata[i][3],
+            "price":DBdata[i][4]
+        })
+    return json.dumps(res,ensure_ascii=False)
+
 ##기타를 탭 눌렀을 때: 나머지 아이템들이 보여짐 (어떤 아이템인지 모르지만 스킨 탈것 펫 하수인이라면 클릭된 것들은 디비에 selected로 저장.)
 @app.route('/user/inventory/etc', methods=['POST'])
 def get_user_etc():
-    return 1
+    data = request.get_json()
+    DBdata = database.GetInputKeyTBLInfo('TBLetc', 'user_key', data["user_key"])
+    res = list()
+    for i in range(len(DBdata)):
+        res.append({
+            "etc_key":DBdata[i][1],
+            "item_key":DBdata[i][2],
+            "name":DBdata[i][3],
+            "price":DBdata[i][4]
+        })
+    return json.dumps(res,ensure_ascii=False)
+
 ##    클릭된 지팡이가 디비에 selected 지팡이로 저장되어야 함.
 @app.route('/user/selects/wand', methods=['POST'])
 def user_selects_wand():
-    return 1
+    data = request.get_json()
+
+    user_key = data["user_key"]
+    wand_key = data["wand_key"]
+
+    result = database.UpdateTBL('TBLuser','wand_key',wand_key,user_key)
+    
+    res = dict()
+    res["result"] = result
+    
+    return json.dumps(res,ensure_ascii=False)
+
 
 
 #######소환술버튼을 눌렀을 때
