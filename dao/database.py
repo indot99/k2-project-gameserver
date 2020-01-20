@@ -3,8 +3,14 @@ import jsonify
 import pymysql
 
 def getConnection():
-    return pymysql.connect(host='127.0.0.1',port=3306, user='root', password='sin5chel',
-                            db='k2server',charset='utf8')
+    return pymysql.connect(
+        host='',
+        port=3306,
+        user='',
+        password='',
+        db='',
+        charset=''
+    )
 
 def CheckLogin(_id,_pw):
     conn = getConnection()
